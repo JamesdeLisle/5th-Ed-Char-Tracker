@@ -1,0 +1,35 @@
+%--basic--%
+name Rhonwen-Callis
+level 7
+height 5.5
+weight 120
+age 70
+alignment True-Neutral
+background Sage
+speed 30
+%--basic--%
+
+%--attributes--%
+strength 8
+dexterity 15
+constitution 10
+intelligence 17
+wisdom 12
+charisma 15
+%--attributes--%
+
+%--proficientskills--%
+arcana
+history
+insight
+perception
+religion
+%--proficientskills--%
+
+%--vitality--%
+health 30
+temp-health 0
+hit-dice 7
+max-health 30
+%--vitality--%
+
