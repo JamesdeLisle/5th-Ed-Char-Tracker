@@ -1,6 +1,6 @@
 import readline
 import code
-
+from inventory import *
 
 def getModifier(attribute):
 
@@ -24,79 +24,73 @@ def readSaveData():
     
     save_file_name = 'save.dat' 
     save_file = open(save_file_name)
-    basic = {}
-    attributes = {}
-    proficient_skills = []
-    vitality = {}
-
-    lines = save_file.readlines()
-
-    basic_limits = [idx for idx , data in enumerate(lines) if '%--basic--%' in data ]
-    basic_lines = lines[basic_limits[0]+1:basic_limits[1]]
-    attribute_limits = [idx for idx , data in enumerate(lines) if '%--attributes--%' in data ]
-    attribute_lines = lines[attribute_limits[0]+1:attribute_limits[1]]
-    proficientskills_limits = [idx for idx , data in enumerate(lines) if '%--proficientskills--%' in data ]
-    proficientskills_lines = lines[proficientskills_limits[0]+1:proficientskills_limits[1]]
-    vitality_limits = [idx for idx , data in enumerate(lines) if '%--vitality--%' in data ]
-    vitality_lines = lines[vitality_limits[0]+1:vitality_limits[1]]
-
-    for line in basic_lines:
-        fields = line.strip().split()
-        basic[fields[0]] = fields[1]
-
-    for line in attribute_lines:
-        fields = line.strip().split()
-        attributes[fields[0]] = int(fields[1])
+    save_data = {'basic':{},'attributes':{},'proficient_skills':{},'vitality':{}}
     
-    for line in proficientskills_lines:
-        fields = line.strip().split()
-        proficient_skills.append(fields[0]) 
-
-    for line in vitality_lines:
-        fields = line.strip().split()
-        vitality[fields[0]] = int(fields[1])
-
-    return  charstate(basic,attributes,proficient_skills,vitality)
+    lines = save_file.readlines()
+    limits = { key : [idx for idx , data in enumerate(lines) if '--%s--' % (key) in data ] for (key) in save_data } 
+    lines = { key : lines[limits[key][0]+1:limits[key][1]] for key in save_data }
+    
+    for key in save_data:
+        for line in lines[key]:
+            fields = line.strip().split()
+            save_data[key][fields[0]] = fields[1]
+ 
+    return  charstate(save_data)
 
 def calculateSkills(attributes,proficient_skills):
     
-    skills = {}
-    
-    skill_types = {'acrobatics':'dexterity','animal handling':'wisdom','arcana':'intelligence','athletics':'strength','deception':'charisma',\
+    skills = {} 
+    skill_dependencies = {'acrobatics':'dexterity','animal-handling':'wisdom','arcana':'intelligence','athletics':'strength','deception':'charisma',\
             'history':'intelligence','insight':'wisdom','intimidation':'charisma','investigation':'intelligence','medicine':'wisdom',\
             'nature':'intelligence','perception':'wisdom','performance':'charisma','persuasion':'charisma','religion':'intelligence',\
-            'sleight of hand':'dexterity','stealth':'dexterity','survival':'wisdom'}
+            'sleight-of-hand':'dexterity','stealth':'dexterity','survival':'wisdom'}
 
-    for key in skill_types:
-        for tik in range(len(proficient_skills)):
-            if key == proficient_skills[tik]:
-                skills[key] = 2 + getModifier(attributes[skill_types[key]])
-                break
-            skills[key] = getModifier(attributes[skill_types[key]])
-
+    for key in proficient_skills:
+        if proficient_skills[key]: 
+            skills[key] = 2 + getModifier(int(attributes[skill_dependencies[key]]))
+        else:
+            skills[key] = getModifier(int(attributes[skill_dependencies[key]]))
 
     return skills
 
 def calculateCombat(attributes, basic):
 
     combat = {}
-
-    combat['ac'] = 10 + getModifier(attributes['dexterity'])
+    combat['ac'] = 10 + getModifier(int(attributes['dexterity']))
     combat['proficiency'] = getProficiency(int(basic['level']))
-    combat['initiative'] = getModifier(attributes['dexterity'])
+    combat['initiative'] = getModifier(int(attributes['dexterity']))
 
     return combat
 
+class equipped:
 
+    def __init__(self,inventory):
+
+        self.weapon = [ item for item in inventory.allStuff['weapon'] if item.equipped_flag]
+        self.armor = [ item for item in inventory.allStuff['armor'] if item.equipped_flag] 
+        self.magical = [ item for item in inventory.allStuff['magical'] if item.equipped_flag]
+    
+    def update(self,inventory):
+ 
+        self.weapon = [ item for item in inventory.allStuff['weapon'] if item.equipped_flag]
+        self.armor = [ item for item in inventory.allStuff['armor'] if item.equipped_flag] 
+        self.magical = [ item for item in inventory.allStuff['magical'] if item.equipped_flag] 
 
 class charstate:
 
-    def __init__(self,basic,attributes,proficient_skills,vitality):
+    def __init__(self,save_data):
         
-        self.basic = basic
-        self.attributes = attributes
-        self.skills = calculateSkills(self.attributes,proficient_skills)
-        self.vitality = vitality
+        self.basic = save_data['basic']
+        self.attributes = save_data['attributes']
+        self.vitality = save_data['vitality'] 
+        self.proficient_skills = save_data['proficient_skills']
+        self.skills = calculateSkills(self.attributes,self.proficient_skills)
         self.combat = calculateCombat(self.attributes,self.basic)
-        self.proficient_skills = proficient_skills
+        self.inventory = inventory()
+        self.equipped = equipped(self.inventory) 
 
+    def updateEquipped(self):
+
+        self.equipped.update(self.inventory)
+
+    

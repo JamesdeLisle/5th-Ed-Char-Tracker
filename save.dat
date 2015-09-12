@@ -18,13 +18,26 @@ wisdom 12
 charisma 15
 %--attributes--%
 
-%--proficientskills--%
-arcana
-history
-insight
-perception
-religion
-%--proficientskills--%
+%--proficient_skills--%
+acrobatics False
+animal-handling False
+arcana True
+athletics False 
+deception False
+history True
+insight True
+intimidation False
+investigation False
+medicine False
+nature False
+perception True 
+performance False
+persuasion False
+religion True
+sleight-of-hand False
+stealth False
+survival False
+%--proficient_skills--%
 
 %--vitality--%
 health 30

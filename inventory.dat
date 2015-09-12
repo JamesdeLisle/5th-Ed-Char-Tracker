@@ -1,0 +1,11 @@
+%--weapon--%
+type dagger
+name NA
+damage 1d4
+damage_type piercing
+weight 1
+properties finesse light thrown
+range 20/60
+%--weapon--%
+
+
