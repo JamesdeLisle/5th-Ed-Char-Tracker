@@ -1,4 +1,6 @@
 import cmd
+import sys
+sys.path.insert(1,'source/')
 from character import *
 from commands import *
 

@@ -16,6 +16,21 @@ def killDisplay():
     curses.echo()
     curses.endwin()
 
+def waitToKill(stdscr):
+
+    key = ''
+    
+    y,x = curses.getsyx()
+    stdscr.addstr(y+2,0,"Press 'q' to return to the console")
+    stdscr.refresh()
+
+    while key != ord('q'):
+        key = stdscr.getch()
+    
+    stdscr.clear()
+    killDisplay()
+
+
 def outputToDash(ypos,xpos,output):
 
     stdscr = initialiseDisplay()

@@ -62,43 +62,56 @@ def setAttribute(self,line):
     self.charState.combat = calculateCombat(self.charState.attributes,self.charState.basic)
 
 def sheet(self,line):
+    
+    if self.charState == []:
+        print("You haven't loaded any character yet! Use the 'load' command.")
+    else:
+        stdscr = initialiseDisplay() 
+        windows = []
+        tables = []
+        dicts = []
+        dims = []
+        dicts.append(self.charState.attributes)
+        dicts.append(self.charState.vitality)
+        dicts.append(self.charState.combat)
+        dicts.append(self.charState.skills)
+        headers = [['Attribute','Base','Modifier'],['Health',''],['Combat',''],['Skill','Value']]
+        layout = ['start','row','row','col']
+        head_count = 0
+        att_flag = True
+        for d in dicts: 
+            table = []
+            width = 0
+            height = 0
+            for key,value in d.iteritems():
+                if att_flag:
+                    table.append([key,value,getModifier(int(value))])
+                    if len(key) + len(str(value)) + len(str(getModifier(int(value)))) > width:
+                        width = len(key) + len(str(value)) 
+                else:
+                    table.append([key,value])
+                    if len(key) + len(str(value)) > width:
+                        width = len(key) + len(str(value)) 
+                height += 1
+            
+            att_flag = False
+            dims.append([width+15,3*height-1])
+            tables.append(tabulate(table,headers=headers[head_count],tablefmt='grid'))   
+            head_count += 1 
 
-    stdscr = initialiseDisplay()
-    at_win = curses.newwin(40,40,0,0)
-    #vi_win = curses.newwin(40,40,0,41)
-    table = []
-    for key, value in self.charState.attributes.iteritems():
-        table.append([key,value,getModifier((int(value)))])
-    out = tabulate(table,headers=['Attribute','Base','Modifier'],tablefmt='grid')
-    at_win.addstr(0,0,out) 
-    vi_win = curses.newwin(40,40,0,41)
-    table = []
-    for key,    value in self.charState.vitality.iteritems():
-        table.append([key,value])    
-    out = tabulate(table,tablefmt='grid')
-    vi_win.addstr(0,0,out)
-    co_win = curses.newwin(40,30,0,64)
-    table = []
-    for key, value in self.charState.combat.iteritems():
-        table.append([key,value])    
-    out = tabulate(table,tablefmt='grid')
-    co_win.addstr(0,0,out)
-    sk_win = curses.newwin(40,80,0,87)
-    table = []
-    for key, value in self.charState.skills.iteritems():
-        table.append([key,value]) 
-    out = tabulate(table,headers=['Skill','Value'],tablefmt='grid')
-    sk_win.addstr(0,0,out)
-    stdscr.refresh()
-    at_win.refresh()
-    vi_win.refresh()
-    co_win.refresh()
-    sk_win.refresh()
-    key = ''
-    while key != ord('q'):
-        key = stdscr.getch()
-    stdscr.clear()
-    killDisplay()
+        windows.append(curses.newwin(dims[0][1],dims[0][0]+10,0,0))
+        windows.append(curses.newwin(dims[1][1],dims[1][0],dims[0][1],0))
+        windows.append(curses.newwin(dims[2][1]+10,dims[2][0]+10,dims[0][1]+dims[1][1]+2,0))
+        windows.append(curses.newwin(dims[3][1],dims[3][0],0,dims[0][0]+20))
+        
+        for table,window in zip(tables,windows):
+            window.addstr(0,0,table)
+        
+        stdscr.refresh()
+        for window in windows:
+            window.refresh()
+        
+        waitToKill(stdscr)
 
 def inventoryShort(self,line):
     
@@ -139,13 +152,18 @@ def inventoryShort(self,line):
                         width = len(item.sub_kind)
                     if len(item.kind) > width:
                         width = len(item.kind)
+                
                 table = [ [entry[0],types[entry[0]]] for entry in sorted(types.items()) ]
                 tables.append(tabulate(table,headers=[item_lists[tik][0].kind,'#'],tablefmt='orgtbl'))
+
                 if len(types) > max_length:
                     max_length = len(types)
+                
                 size_y = len(types) + 3
                 size_x = width + 15
+                
                 windows.append(curses.newwin(size_y,size_x,start_y,start_x))
+                
                 start_y = start_y
                 start_x = start_x + width + 15
         
