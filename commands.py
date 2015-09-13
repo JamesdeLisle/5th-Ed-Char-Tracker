@@ -1,6 +1,8 @@
 from display import *
 from character import *
 from tabulate import tabulate
+from os import listdir
+import glob
 
 def prompt(self,line):
     
@@ -209,4 +211,26 @@ def comp_chuckItem(self, text, line, begidx, endidx):
     offs = len(mline) - len(text)
 
     return [item[offs:] for item in completions if item.startswith(mline)]
+
+def save(self,line):
+
+    with open('saves/%s.pkl'%(self.charState.basic['name']),'wb') as output:
+        pickle.dump(self.charState,output,pickle.HIGHEST_PROTOCOL)
+
+def load(self,name):
+    
+    with open('saves/%s.pkl'%(name),'rb') as input:
+        self.charState = pickle.load(input)
+
+    self.prompt = '%s > ' % (self.charState.basic['name'])
+
+def comp_load(self, text, line, begidx, endidx):
+
+    dirs = glob.glob('saves/*.pkl')
+    completions = [ dir_name[6:len(dir_name)-4] for dir_name in dirs ]
+    mline = line.partition(' ')[2]
+    offs = len(mline) - len(text)
+
+    return [name[offs:] for name in completions if name.startswith(mline)]
+
 

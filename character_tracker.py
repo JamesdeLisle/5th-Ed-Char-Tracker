@@ -6,8 +6,8 @@ class CharacterTracker(cmd.Cmd):
     
     def __init__(self):
         cmd.Cmd.__init__(self)
-        self.charState = readSaveData()
-        self.prompt = '%s > ' % (self.charState.basic['name'])
+        self.charState = []
+        self.prompt = 'CHARTRACKER> '
         self.intro = "\n=============================\n5th Edition Character Tracker\n=============================\n"     
         self.doc_header = 'doc_header'
         self.misc_header = 'misc_header'
@@ -46,7 +46,16 @@ class CharacterTracker(cmd.Cmd):
         
     def complete_chuckItem(self,text,line,begidx,endidx):
         return comp_chuckItem(self,text,line,begidx,endidx)
-        
+
+    def do_save(self,line):
+        save(self,line)
+    
+    def do_load(self,name):
+        load(self,name)
+
+    def complete_load(self,text,line,begidx,endidx):
+        return comp_load(self,text,line,begidx,endidx)
+
     def do_quit(self, line):
         return True
 

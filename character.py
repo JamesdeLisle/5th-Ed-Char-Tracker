@@ -92,5 +92,3 @@ class charstate:
     def updateEquipped(self):
 
         self.equipped.update(self.inventory)
-
-    

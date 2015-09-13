@@ -1,5 +1,7 @@
 from tabulate import tabulate
 from dialogue import *
+import pickle
+
 class inventory:
 
     def __init__(self):
