@@ -27,7 +27,6 @@ class inventory:
                     self.allStuff[kind].pop(tik2)
                     break
 
-
     def getDictOfNames(self):
 
         dictOfNames = {}

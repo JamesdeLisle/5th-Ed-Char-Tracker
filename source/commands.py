@@ -251,4 +251,15 @@ def comp_load(self, text, line, begidx, endidx):
 
     return [name[offs:] for name in completions if name.startswith(mline)]
 
+def createCharacter(self,line):
+
+    self.charState = charstate()
+
+
+
+
+
+
+    
+
 

@@ -58,6 +58,12 @@ class CharacterTracker(cmd.Cmd):
     def complete_load(self,text,line,begidx,endidx):
         return comp_load(self,text,line,begidx,endidx)
 
+    def do_addFeat(self,line):
+        addFeat(self,line)
+
+    def do_createCharacter(self,line):
+        createCharacter(self,line)
+
     def do_quit(self, line):
         return True
 

@@ -1,6 +1,7 @@
 import readline
 import code
 from inventory import *
+from character_generator import *
 
 def getModifier(attribute):
 
@@ -19,23 +20,6 @@ def getProficiency(level):
         proficiency = 5
 
     return proficiency
-
-def readSaveData():
-    
-    save_file_name = 'save.dat' 
-    save_file = open(save_file_name)
-    save_data = {'basic':{},'attributes':{},'proficient_skills':{},'vitality':{}}
-    
-    lines = save_file.readlines()
-    limits = { key : [idx for idx , data in enumerate(lines) if '--%s--' % (key) in data ] for (key) in save_data } 
-    lines = { key : lines[limits[key][0]+1:limits[key][1]] for key in save_data }
-    
-    for key in save_data:
-        for line in lines[key]:
-            fields = line.strip().split()
-            save_data[key][fields[0]] = fields[1]
- 
-    return  charstate(save_data)
 
 def calculateSkills(attributes,proficient_skills):
     
@@ -78,16 +62,18 @@ class equipped:
 
 class charstate:
 
-    def __init__(self,save_data):
+    def __init__(self):
         
-        self.basic = save_data['basic']
-        self.attributes = save_data['attributes']
-        self.vitality = save_data['vitality'] 
-        self.proficient_skills = save_data['proficient_skills']
+        self.basic = initialiseBasic()
+        self.attributes = initialiseAttributes()
+        self.vitality = initialiseVitality() 
+        self.proficient_skills = initialiseProficientSkills()
+        self.feats = initialiseFeats()
         self.skills = calculateSkills(self.attributes,self.proficient_skills)
-        self.combat = calculateCombat(self.attributes,self.basic)
         self.inventory = inventory()
         self.equipped = equipped(self.inventory) 
+        self.combat = calculateCombat(self.attributes,self.basic)
+
 
     def updateEquipped(self):
 
