@@ -10,7 +10,7 @@ class inventory:
         self.allStuff['weapon'] = []
         self.allStuff['armor'] = []
         self.allStuff['magical'] = []
-        self.allStuff['adventure'] = []
+        self.allStuff['adventure-gear'] = []
         self.allStuff['tool'] = []
         self.allStuff['food'] = []
         self.allStuff['misc'] = []
@@ -117,7 +117,7 @@ class misc(item):
 
 def addItem(self,line):
     
-    kind_list = ['weapon','armor','magical item','adventuring gear','tool','food','misc']
+    kind_list = ['weapon','armor','magical','adventure-gear','tool','food','misc']
     choice = dispSingleList('What kind of item is it?',kind_list)
     kind = kind_list[int(choice)-1]
 
@@ -131,7 +131,7 @@ def addItem(self,line):
     elif kind == 'armor':
         properties, quantity = dialogueArmor(properties)
         item = armor(properties)
-    elif kind == 'magical item':
+    elif kind == 'magical':
         properties, quantity = dialogueMagicalItem(properties)
         item = magicalitem(properties)
     elif kind == 'adventuring gear':

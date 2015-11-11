@@ -128,3 +128,55 @@ def dispMultipleList(statement,options):
     killDisplay()
 
     return props
+
+def dispMultipleListExisting(statement,options):
+
+    indentation = 3 
+    stdscr = initialiseDisplay()
+
+    curses.echo()
+    
+    stdscr.addstr(1,indentation,statement)
+    stdscr.refresh()
+
+    input_flag = True
+
+    while input_flag:
+
+        count = 1
+        
+        for key,value in sorted(options.iteritems()):
+            if value:
+                stdscr.addstr(3+count,indentation,'%d) %s (*)' % (count,key))
+                stdscr.refresh()
+            else:
+                stdscr.addstr(3+count,indentation,'%d) %s    ' % (count,key)) 
+                stdscr.refresh()
+            
+            count += 1
+
+        
+        stdscr.addstr(5 + count,indentation,"If you have finished choosing press 'q'")
+        
+        stdscr.addstr(6 + count,indentation,'Pick a number (picking an already selected number will deselect it):               ')
+        stdscr.refresh()
+        choice = stdscr.getstr(9 + count,indentation+15)
+
+        try:
+            test = int(choice)
+            if 0 < test < len(options)+1:
+                options[sorted(options.iteritems())[test-1][0]] = not options[sorted(options.iteritems())[test-1][0]]
+            else:
+                stdscr.addstr(8 + count,indentation,'Thats not an option!                ')
+                stdscr.refresh()
+        except ValueError:
+            if choice == 'q':
+                input_flag = False
+            else:
+                stdscr.addstr(8 + count,indentation,'Thats not a number!                     ')
+                stdscr.refresh() 
+
+    stdscr.clear()
+    killDisplay()
+
+    return options

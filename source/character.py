@@ -12,16 +12,18 @@ def getProficiency(level):
     proficiency = 0
     if level < 5:
         proficiency = 2
-    elif level < 9:
+    elif  4 < level < 9:
         proficiency = 3
-    elif level < 13:
+    elif 8 < level < 13:
         proficiency = 4
-    elif level < 17:
+    elif 12 < level < 17:
         proficiency = 5
+    elif 16 < level < 21:
+        proficiency = 6
 
     return proficiency
 
-def calculateSkills(attributes,proficient_skills):
+def calculateSkills(attributes,proficient_skills,basic):
     
     skills = {} 
     skill_dependencies = {'acrobatics':'dexterity','animal-handling':'wisdom','arcana':'intelligence','athletics':'strength','deception':'charisma',\
@@ -31,18 +33,24 @@ def calculateSkills(attributes,proficient_skills):
 
     for key in proficient_skills:
         if proficient_skills[key]: 
-            skills[key] = 2 + getModifier(int(attributes[skill_dependencies[key]]))
+            skills[key] = getProficiency(int(basic['level'])) + getModifier(int(attributes[skill_dependencies[key]]))
         else:
             skills[key] = getModifier(int(attributes[skill_dependencies[key]]))
 
     return skills
 
-def calculateCombat(attributes, basic):
+def calculateCombat(attributes, basic, equipped):
 
     combat = {}
-    combat['ac'] = 10 + getModifier(int(attributes['dexterity']))
+    if equipped.armor == []:
+        combat['ac'] = 10 + getModifier(int(attributes['dexterity']))
+    else:
+        combat['ac'] = int(equipped.armor[0].armor_class) + getModifier(int(attributes['dexterity']))
+
     combat['proficiency'] = getProficiency(int(basic['level']))
     combat['initiative'] = getModifier(int(attributes['dexterity']))
+    combat['spell-save'] = 8 + combat['proficiency'] + getModifier(int(attributes['intelligence']))
+    combat['spell-attack'] = combat['proficiency'] + getModifier(int(attributes['intelligence']))
 
     return combat
 
@@ -69,12 +77,22 @@ class charstate:
         self.vitality = initialiseVitality() 
         self.proficient_skills = initialiseProficientSkills()
         self.feats = initialiseFeats()
-        self.skills = calculateSkills(self.attributes,self.proficient_skills)
+        self.skills = calculateSkills(self.attributes,self.proficient_skills,self.basic)
         self.inventory = inventory()
         self.equipped = equipped(self.inventory) 
-        self.combat = calculateCombat(self.attributes,self.basic)
+        self.combat = calculateCombat(self.attributes,self.basic,self.equipped)
+        self.spells = initialiseSpells()
 
 
     def updateEquipped(self):
 
         self.equipped.update(self.inventory)
+
+    def updateCombat(self):
+
+        self.combat = calculateCombat(self.attributes,self.basic,self.equipped)
+
+    def updateSkills(self):
+
+        self.skills = calculateSkills(self.attributes,self.proficient_skills,self.basic)
+

@@ -21,7 +21,7 @@ def waitToKill(stdscr):
     key = ''
     
     y,x = curses.getsyx()
-    stdscr.addstr(y+2,0,"Press 'q' to return to the console")
+    stdscr.addstr(y+10,0,"Press 'q' to return to the console")
     stdscr.refresh()
 
     while key != ord('q'):
@@ -38,7 +38,7 @@ def outputToDash(ypos,xpos,output):
     stdscr.refresh()
     
     y,x = curses.getsyx()
-    stdscr.addstr(y+2,0,"Press 'q' to return to the console")
+    stdscr.addstr(y+10,0,"Press 'q' to return to the console")
     stdscr.refresh()
     
     key = ''
