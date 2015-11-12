@@ -1,0 +1,10 @@
+import readline
+import code
+from class_attributes import *
+
+class charstate:
+
+    def __init__(self):
+        
+        self.attributes = attributes()
+

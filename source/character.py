@@ -83,7 +83,6 @@ class charstate:
         self.combat = calculateCombat(self.attributes,self.basic,self.equipped)
         self.spells = initialiseSpells()
 
-
     def updateEquipped(self):
 
         self.equipped.update(self.inventory)

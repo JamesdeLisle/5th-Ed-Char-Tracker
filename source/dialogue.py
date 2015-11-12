@@ -180,3 +180,34 @@ def dispMultipleListExisting(statement,options):
     killDisplay()
 
     return options
+
+def dispAskForAllDictInteger(dictionary):
+
+    indentation = 3 
+    stdscr = initialiseDisplay()
+    curses.echo()
+    choice_flag = True
+    y,x = curses.getsyx()
+    
+    for key,value in dictionary.iteritems():
+        go_flag = True
+        while go_flag:
+            statement = 'Please choose a value for %s: ' % (key.upper())
+            stdscr.addstr(y+2,indentation,'%s                                             ' % (statement))
+            stdscr.refresh()
+            choice = stdscr.getstr(y+2,indentation+len(statement)+1)
+            try:
+                test = int(choice)
+                if int(choice) > 20 or int(choice) < 1:
+                    stdscr.addstr(y+2,indentation,'That value is not within the allowed 1-20 range!                     ')
+                else:
+                    dictionary[key] = int(choice)
+                    go_flag = False
+            except ValueError:
+                stdscr.addstr(y+2,indentation,'Thats not a integer!                     ')
+                stdscr.refresh()
+    stdscr.clear()
+    killDisplay()
+
+    return dictionary
+
