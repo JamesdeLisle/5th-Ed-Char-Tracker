@@ -4,33 +4,42 @@ from tabulate import tabulate
 from os import listdir
 import glob
 
-def setAttribute(self,line):
+def setAttribute(self,name):
     
-    attribute_list = ['strength','dexterity','constitution','intelligence','wisdom','charisma'] 
-    attribute = dispSingleList('Which attribute do you want to change?: ',attribute_list)
-    value = dispSingleEntry('What is the new value?: ','integer')
+    if name in self.charState.attributes.returnListOfNames():
+        self.charState.attributes.changeSingleAttribute(name)
+    else:
+        print("That isn't an attribute!")
 
+    self.charState.skills.calculateSkills(self.charState.basic,self.charState.attributes)
+    self.charState.combat.calculateCombat(self.charState.inventory,self.charState.basic,self.charState.attributes) 
 
-    self.charState.attributes[attribute_list[int(attribute)-1]] = int(value)
-    self.charState.updateSkills()
-    self.charState.updateCombat()
-
-def changeSkillProficiencies(self,line):
+def comp_setAttribute(self, text, line, begidx, endidx):
      
-    self.charState.proficient_skills = dispMultipleListExisting('Select or deselect your skill proficiencies: ',self.charState.proficient_skills)
-    self.charState.updateSkills()
+    completions = self.charState.attributes.returnListOfNames()
+    mline = line.partition(' ')[2]
+    offs = len(mline) - len(text)
 
-def changeBasic(self,name):
+    return [item[offs:] for item in completions if item.startswith(mline)]
 
-    value = dispSingleEntry("Enter the new value for '%s':  " % (name),'string')
-    self.charState.basic[name] = value
-    self.charState.updateCombat()
-    self.charState.updateSkills()
+def setSkillProficiencies(self,line):
 
-def comp_changeBasic(self, text, line, begidx, endidx):
+    self.charState.skills.changeProficiencies()
+    self.charState.skills.calculateSkills(self.charState.basic,self.charState.attributes)
+
+def setBasic(self,name):
+    
+    if name in self.charState.basic.returnListOfNames():
+        self.charState.basic.changeSingleBasic(name)
+    else:
+        print("That isn't an attribute!")
+
+    self.charState.skills.calculateSkills(self.charState.basic,self.charState.attributes)
+    self.charState.combat.calculateCombat(self.charState.inventory,self.charState.basic,self.charState.attributes) 
+
+def comp_setBasic(self, text, line, begidx, endidx):
      
-    contents = self.charState.basic.iteritems()
-    completions = [ key for key,value in contents ]
+    completions = self.charState.basic.returnListOfNames()
     mline = line.partition(' ')[2]
     offs = len(mline) - len(text)
 

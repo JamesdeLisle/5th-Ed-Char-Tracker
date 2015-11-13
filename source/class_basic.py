@@ -21,7 +21,7 @@ class basic:
 
     def changeSingleBasic(self,kind):
 
-        self.basic[kind] = dispSingleEntry('Please enter a new value for your %s: ' % (kind.upper()) ,'string')
+        self.basic[kind] = dispSingleEntry('Please enter a new value for your %s: ' % (kind.upper()) ,'str')
 
     def getProficiency(self):
         
@@ -40,6 +40,14 @@ class basic:
     def returnTable(self):
 
         return tabulate([ [key,value] for key,value in self.basic.iteritems()],tablefmt='grid')
+
+    def returnListOfNames(self):
+
+        return [ key[0] for key in self.names.iteritems() ]
+    
+    def returnLevel(self):
+
+        return int(self.basic['level'])
 
             
         

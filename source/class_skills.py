@@ -26,4 +26,10 @@ class skills:
     def returnTable(self):
 
         return tabulate([[key,value] for key,value in self.skills.iteritems()],tablefmt='grid')
+
+    def changeProficiencies(self):
+
+        self.proficiencies = dispMultipleListExisting('Select or deselect your skill proficiencies: ',self.proficiencies)
+
+
     

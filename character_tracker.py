@@ -3,9 +3,11 @@ import sys
 sys.path.insert(1,'source/')
 from character import *
 from commands import *
-from commands_vitality import *
+from commands_sheet import *
 from commands_stats import *
+from commands_health import *
 from commands_inventory import *
+from commands_feats import *
 from commands_spellbook import *
 
 class CharacterTracker(cmd.Cmd):
@@ -21,37 +23,10 @@ class CharacterTracker(cmd.Cmd):
         self.ruler = '-' 
 
     def do_prompt(self, line):
-        prompt(self,line) 
+        prompt(self,line)
 
-    def do_attributes(self,line):
-        attributes(self,line)
-    
-    def do_skills(self,line):
-        skills(self,line) 
-
-    def do_vitality(self,line):
-        vitality(self,line)
-
-    def do_combat(self,line):
-        combat(self,line)
-        
-    def do_setAttribute(self,line):
-        setAttribute(self,line)
-        
-    def do_sheet(self,line):
-        sheet(self,line)
-
-    def do_addItem(self,line):
-        addItem(self,line)
-    
-    def do_inventoryShort(self,line):
-        inventoryShort(self,line)
-   
-    def do_chuckItem(self, item):
-        chuckItem(self,item)
-        
-    def complete_chuckItem(self,text,line,begidx,endidx):
-        return comp_chuckItem(self,text,line,begidx,endidx)
+    def do_createCharacter(self,line):
+        createCharacter(self,line)
 
     def do_save(self,line):
         save(self,line)
@@ -62,59 +37,92 @@ class CharacterTracker(cmd.Cmd):
     def complete_load(self,text,line,begidx,endidx):
         return comp_load(self,text,line,begidx,endidx)
 
+    def do_sheet(self,line):
+        sheet(self,line)
+
+    def do_setAttribute(self,name):
+        setAttribute(self,name)
+    
+    def complete_setAttribute(self, text, line, begidx, endidx):
+        return comp_setAttribute(self, text, line, begidx, endidx)
+
+    def do_setSkillProficiencies(self,line):
+        setSkillProficiencies(self,line)
+
+    def do_setBasic(self,name):
+        setBasic(self,name)
+
+    def complete_setBasic(self, text, line, begidx, endidx):
+        return comp_setBasic(self, text, line, begidx, endidx)
+    
+    def do_addTemporaryHealth(self,line):
+        addTemporaryHealth(self,line)
+
+    def do_clearTemporaryHealth(self,line):
+        clearTemporaryHealth(self,line)
+
+    def do_takeDamage(self,line):
+        takeDamage(self,line)
+
+    def do_setHealth(self,name):
+        setHealth(self,name)
+
+    def complete_setHealth(self, text, line, begidx, endidx):
+        return comp_setHealth(self, text, line, begidx, endidx)
+
+    def do_heal(self,line):
+        heal(self,line)
+
+    def do_shortRest(self,line):
+        shortRest(self,line)
+
+    def do_addHitDice(self,line):
+        addHitDice(self,line)
+    
+    def do_showInventory(self,line):
+        showInventory(self,line)
+
+    def do_addItem(self,name):
+        addItem(self,name)
+
+    def complete_addItem(self, text, line, begidx, endidx):
+        return comp_addItem(self, text, line, begidx, endidx)
+
+    def do_chuckItem(self,name):
+        chuckItem(self,name)
+
+    def complete_chuckItem(self, text, line, begidx, endidx):
+        return comp_chuckItem(self, text, line, begidx, endidx)
+    
     def do_addFeat(self,line):
         addFeat(self,line)
 
-    def do_createCharacter(self,line):
-        createCharacter(self,line)
+    def do_showFeats(self,line):
+        showFeats(self,line)
 
-    def do_spellBook(self,line):
-        spellBook(self,line)
+    def do_examineFeat(self,line):
+        examineFeat(self,line)
 
-    def do_addSpell(self,line):
-        addSpell(self,line)
-
-    def do_showEquipped(self,line):
-        showEquipped(self,line)
-
-    def do_updateCombat(self,line):
-        updateCombat(self,line)
-
-    def do_updateSkills(self,line):
-        updateSkills(self,line)
+    def do_examineItem(self,name):
+        examineItem(self,name)
     
-    def do_changeSkillProficiencies(self,line):
-        changeSkillProficiencies(self,line)
-    
-    def do_changeBasic(self,name):
-        changeBasic(self,name)
+    def complete_examineItem(self, text, line, begidx, endidx):
+        return comp_examineItem(self, text, line, begidx, endidx)
 
-    def complete_changeBasic(self, text, line, begidx, endidx):
-        return comp_changeBasic(self, text, line, begidx, endidx)
+    def do_addSpell(self,name):
+        addSpell(self,name)
 
-    def do_takeDamage(self,damage):
-        takeDamage(self,damage)
+    def complete_addSpell(self, text, line, begidx, endidx):
+        return comp_addSpell(self, text, line, begidx, endidx)
 
-    def do_addTemporaryHealth(self,points):
-        addTemporaryHealth(self,points)
+    def do_showSpellBook(self,line):
+        showSpellBook(self,line)
 
-    def do_clearTemporaryHealth(self,points):
-        clearTemporaryHealth(self,points)
-    
-    def do_heal(self,points):
-        heal(self,points)
-    
-    def do_setMaxHitPoints(self,points):
-        setMaxHitPoints(self,points)
-    
-    def do_restShort(self,number):
-        restShort(self,number)
+    def do_examineSpell(self,name):
+        examineSpell(self,name)
 
-    def do_addHitDice(self,number):
-        addHitDice(self,number)
-
-    def do_restExtended(self,line):
-        restExtended(self)
+    def complete_examineSpell(self, text, line, begidx, endidx):
+        return comp_examineSpell(self, text, line, begidx, endidx)
 
     def do_quit(self, line):
         return True
