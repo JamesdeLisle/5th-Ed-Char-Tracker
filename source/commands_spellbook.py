@@ -19,3 +19,19 @@ def comp_addSpell(self, text, line, begidx, endidx):
     offs = len(mline) - len(text)
 
     return [item[offs:] for item in completions if item.startswith(mline)]
+
+def chuckSpell(self,name):
+
+    if name in self.charState.spellbook.returnLevels():
+        self.charState.spellbook.chuckSpell(name)
+    else:
+        print('That is not an option!')
+
+def comp_chuckSpell(self, text, line, begidx, endidx):
+     
+    completions = self.charState.spellbook.returnLevels()
+    mline = line.partition(' ')[2]
+    offs = len(mline) - len(text)
+
+    return [item[offs:] for item in completions if item.startswith(mline)]
+

@@ -156,7 +156,7 @@ class equipped:
                             self.weapons_right_hand = []
                             self.weapons_left_hand.append(item)
 
-        elif item['class'] == 'armor':
+        elif item.properties['class'] == 'armor':
             occupation = [len(self.armor),len(self.shield)]
             if item['type'] == 'Shield' or item['type'] == 'shield':
                 if occupation == [0,0]:
@@ -179,7 +179,7 @@ class equipped:
                     else:
                         pass
             
-        elif item['class'] == 'magical':
+        elif item.properties['class'] == 'magical':
             self.magical.append(item)
     
     def getAC(self):

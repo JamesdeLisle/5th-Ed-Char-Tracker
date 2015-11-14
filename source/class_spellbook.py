@@ -6,10 +6,11 @@ from textwrap import wrap
 
 class spellbook:
 
-    def __init__(self):
+    def __init__(self,basic):
         
         self.names = ['cantrips','level-1','level-2','level-3','level-4','level-5','level-6','level-7','level-8','level-9']
         self.spellbook = OrderedDict((key,[]) for key in self.names)
+        self.spellslots = spellslots()
 
     def addSpell(self,level):
         
@@ -64,7 +65,37 @@ class spellbook:
         index = self.returnSpellIndex(spell_level,choice['choice'])
         
         return copy.deepcopy(self.spellbook[spell_level][index])
+        
     
+    def chuckSpell(self,spell_level):
+
+        names = []
+        for spell in self.spellbook[spell_level]:
+            names.append(spell.returnName())
+        
+        types = { 'choice':['Please select the spell you wish to throw away','lst']}
+        lists = {'choice':names}
+        out = {'choice':''}
+
+        choice = dispAskForAllDict(out,types,lists)
+        
+        index = self.returnSpellIndex(spell_level,choice['choice'])
+        self.spellbook[spell_level].pop(index)
+
+class spellslots:
+
+    def __init__(self,basic):
+
+        self.slots = OrderedDict(('level-%d' % (tik+1),0) for tik in range(0,9))
+        self.slots = self.setSlots()
+
+
+    def setSlots(self):
+
+
+        
+
+        
 
 class spell:
 

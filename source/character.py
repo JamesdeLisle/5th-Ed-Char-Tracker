@@ -19,5 +19,5 @@ class charstate:
         self.inventory = inventory()
         self.combat = combat(self.inventory,self.basic,self.attributes)
         self.feats = feats()
-        self.spellbook = spellbook()
+        self.spellbook = spellbook(basic)
 

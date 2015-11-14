@@ -39,6 +39,9 @@ class CharacterTracker(cmd.Cmd):
 
     def do_sheet(self,line):
         sheet(self,line)
+        
+    def do_s(self,line):
+        sheet(self,line)
 
     def do_setAttribute(self,name):
         setAttribute(self,name)
@@ -82,6 +85,9 @@ class CharacterTracker(cmd.Cmd):
     def do_showInventory(self,line):
         showInventory(self,line)
 
+    def do_i(self,line):
+        showInventory(self,line)
+
     def do_addItem(self,name):
         addItem(self,name)
 
@@ -102,11 +108,21 @@ class CharacterTracker(cmd.Cmd):
 
     def do_examineFeat(self,line):
         examineFeat(self,line)
+    
+    def do_ef(self,line):
+        examineFeat(self,line)
 
     def do_examineItem(self,name):
         examineItem(self,name)
     
     def complete_examineItem(self, text, line, begidx, endidx):
+        return comp_examineItem(self, text, line, begidx, endidx)
+
+    def do_ei(self,line):
+        examineItem(self,line)
+
+    def complete_ei(self,
+        text, line, begidx, endidx):
         return comp_examineItem(self, text, line, begidx, endidx)
 
     def do_addSpell(self,name):
@@ -118,11 +134,20 @@ class CharacterTracker(cmd.Cmd):
     def do_showSpellBook(self,line):
         showSpellBook(self,line)
 
+    def do_w(self,line):
+        showSpellBook(self,line)
+
     def do_examineSpell(self,name):
         examineSpell(self,name)
 
     def complete_examineSpell(self, text, line, begidx, endidx):
         return comp_examineSpell(self, text, line, begidx, endidx)
+
+    def do_chuckSpell(self,name):
+        chuckSpell(self,name)
+
+    def complete_chuckSpell(self, text, line, begidx, endidx):
+        return comp_chuckSpell(self, text, line, begidx, endidx)
 
     def do_quit(self, line):
         return True

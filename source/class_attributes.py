@@ -22,7 +22,7 @@ class attributes:
 
     def changeSingleAttribute(self,kind):
 
-        self.attributes[kind] = int(dispSingleEntry('Please enter a new value for your %s: ' % (kind.upper()) ,'integer'))
+        self.attributes[kind] = int(dispSingleEntry('Please enter a new value for your %s: ' % (kind.upper()) ,'int'))
         
     def getModifier(self,kind):
 
