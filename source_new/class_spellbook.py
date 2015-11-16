@@ -88,6 +88,13 @@ class spellslots:
 
         self.slots = OrderedDict(('level-%d' % (tik+1),0) for tik in range(0,9))
         self.slots = self.setSlots()
+
+
+    def setSlots(self):
+
+
+        
+
         
 
 class spell:

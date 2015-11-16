@@ -8,82 +8,129 @@ def initDisp():
 
     return indentation,stdscr
 
-def dialogue(dictionary,names,lists=[]):
+def dialogue(stat):
+    
+    indentation,stdscr = initDisp()
+             
+    if stat.returnType() == 'int': 
+        
+        stat = dispInt(stat,indentation,stdscr) 
+    
+    elif stat.returnType()  == 'intr':
+
+        stat = dispIntRange(stat,indentation,stdscr)
+
+    elif stat.returnType() == 'intv':
+
+        stat = dispIntValues(stat,indentation,stdscr)
+
+    elif stat.returnType()== 'str':
+      
+        stat = dispStr(stat,indentation,stdscr)
+
+    elif stat.returnType() == 'die':
+        
+        stat = dispDie(key,indentation,stdscr)
+
+    elif stat.returnType() == 'lst':
+        
+        stat = dispLst(stat,indentation,stdscr)
+         
+    elif stat.returnType() == 'mlst':
+        
+        stat = dispMLst(stat,indentation,stdscr)
+
+    elif stat.returnType() == 'bool':
+
+        stat = dispBool(stat,indentation,stdscr)
+
+    elif stat.returnType() == 'lstc':
+
+        stat = dispListCont(stat,indentation,stdscr)
+
+    return stat
+
+def dispListCont(stat,indentation,stdscr):
+
+    go_flag = True
+    question_ypos = 2
+    list_ypos = 4
+    error_ypos = 4
+    error_statement = '' 
+    statement = '%s' % (stat.returnStatement())
+    
+    while go_flag:
+        
+        stdscr.addstr(error_ypos,indentation,error_statement)
+        stdscr.refresh()
+        stdscr.addstr(question_ypos,indentation,'%s' % (statement))
+        stdscr.refresh()
+
+        for idx,destat in enumerate(stat.returnList()):
+            stdscr.addstr(list_ypos+idx,indentation,'%d) %s' % (idx+1,destat.returnLabel()))
+            stdscr.refresh()
+
+        y_end,x_end = curses.getsyx()    
+        error_ypos = y_end + 6
+        stdscr.addstr(y_end+4,indentation,'Pick a number: ')
+        stdscr.refresh()
+        choice = stdscr.getstr(y_end+4,indentation+16)
+        
+        try:
+            test = int(choice)
+            if 0 < test < len(stat.returnList())+1:
+                go_flag = False 
+            else:
+                error_statement = 'Thats not an option!'
+                stdscr.refresh()
+        except ValueError:
+            error_statement = 'Thats not a number!'
+            
+        stdscr.clear()
+    
+    
+    stdscr.clear() 
+    killDisplay()
     
     indentation,stdscr = initDisp()
 
-    for key,value in names.iteritems():
-        
-        if dictionary[key]:
-            
-            if names[key][1] == 'int': 
-                
-                dictionary[key] = dispInt(key,names,indentation,stdscr) 
-            
-            elif names[key][1] == 'rint':
+    stat.list[int(choice)-1] = dialogue(stat.list[int(choice)-1])
+    stat.setValue(stat.returnList())    
 
-                dictionary[key] = dispIntRange(key,names,indentation,stdscr,lists)
+    return stat
 
-            elif names[key][1] == 'vint':
 
-                dictionary[key] = dispIntValues(key,names,indentation,stdscr,lists)
-
-            elif names[key][1] == 'str':
-              
-                dictionary[key] = dispStr(key,names,indentation,stdscr)
-     
-            elif names[key][1] == 'die':
-                
-                dictionary[key] = dispDie(key,indentation,stdscr)
-
-            elif names[key][1] == 'lst':
-                
-                dictionary[key] = dispLst(key,indentation,stdscr,lists)
-                 
-            elif names[key][1] == 'mlst':
-                
-                dictionary[key] = dispMLst(key,indentation,stdscr,lists)
-
-            elif names[key][1] == 'bool':
-
-                dictionary[key] = dispBool(key,names,indentation,stdscr)
-
-            stdscr.clear()
-
-    stdscr.clear() 
-    killDisplay()
-
-    return dictionary
-
-def dispInt(key,names,indentation,stdscr):
+def dispInt(stat,indentation,stdscr):
 
     go_flag = True
     question_ypos = 2
     error_ypos = 4
     error_statement = '' 
-    statement = '%s' % (names[key][0])
+    statement = '%s' % (stat.returnStatement())
 
     while go_flag:
         
         stdscr.addstr(error_ypos,indentation,error_statement)
-        stdscr.refresh()
-        
+        stdscr.refresh() 
         stdscr.addstr(question_ypos,indentation,'%s: ' % (statement))
         stdscr.refresh()
-        selection = stdscr.getstr(y+question_ypos,indentation+len(statement)+2)
+        selection = stdscr.getstr(question_ypos,indentation+len(statement)+2) 
         
-        try:   
-            
+        try:    
             test = int(selection)        
-            go_flag = False 
-        
-        except ValueError:
-        
+            go_flag = False  
+        except ValueError: 
             error_statement = 'Thats not a integer!'
         
         stdscr.clear()
+    
+    stat.setValue(int(selection))
 
-    return int(selection)
+    
+    stdscr.clear() 
+    killDisplay()
+
+    return stat
 
 def dispIntRange(key,names,indentation,stdscr,lists):
 
@@ -149,15 +196,19 @@ def dispIntValues(key,names,indentation,stdscr,lists):
 
     return int(selection)
 
-def dispStr(key,names,indentation,stdscr):
+def dispStr(stat,indentation,stdscr):
     
     question_ypos = 2
-    statement = '%s' % (names[key][0])
+    statement = '%s' % (stat.returnStatement())
     stdscr.addstr(question_ypos,indentation,'%s: ' % (statement))
     stdscr.refresh()
     selection = stdscr.getstr(question_ypos,indentation+len(statement)+2)
-    
-    return selection
+    stat.setValue(selection)
+ 
+    stdscr.clear() 
+    killDisplay()
+
+    return stat
 
 def dispDie(key,indentation,stdscr):
 
