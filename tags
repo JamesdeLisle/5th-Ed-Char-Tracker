@@ -1,0 +1,179 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+__init__	source/character.py	/^    def __init__(self):$/;"	m	class:charstate
+__init__	source/class_attributes.py	/^    def __init__(self):$/;"	m	class:attributes
+__init__	source/class_basic.py	/^    def __init__(self):$/;"	m	class:basic
+__init__	source/class_combat.py	/^    def __init__(self,inventory,basic,attributes):$/;"	m	class:combat
+__init__	source/class_container.py	/^    def __init__(self,info):$/;"	m	class:contDice
+__init__	source/class_container.py	/^    def __init__(self,info):$/;"	m	class:contInt
+__init__	source/class_container.py	/^    def __init__(self,info):$/;"	m	class:contStr
+__init__	source/class_container.py	/^    def __init__(self,info):$/;"	m	class:container
+__init__	source/class_container.py	/^    def __init__(self,info,allowed):$/;"	m	class:contIntVal
+__init__	source/class_container.py	/^    def __init__(self,info,list):$/;"	m	class:contListCont
+__init__	source/class_container.py	/^    def __init__(self,info,list):$/;"	m	class:contLst
+__init__	source/class_container.py	/^    def __init__(self,info,list):$/;"	m	class:contMlist
+__init__	source/class_container.py	/^    def __init__(self,info,range):$/;"	m	class:contIntRng
+__init__	source/class_feats.py	/^    def __init__(self):$/;"	m	class:feat
+__init__	source/class_feats.py	/^    def __init__(self):$/;"	m	class:feats
+__init__	source/class_health.py	/^    def __init__(self):$/;"	m	class:health
+__init__	source/class_inventory.py	/^    def __init__(self):$/;"	m	class:adventuringgear
+__init__	source/class_inventory.py	/^    def __init__(self):$/;"	m	class:armor
+__init__	source/class_inventory.py	/^    def __init__(self):$/;"	m	class:equipped
+__init__	source/class_inventory.py	/^    def __init__(self):$/;"	m	class:inventory
+__init__	source/class_inventory.py	/^    def __init__(self):$/;"	m	class:magical
+__init__	source/class_inventory.py	/^    def __init__(self):$/;"	m	class:misc
+__init__	source/class_inventory.py	/^    def __init__(self):$/;"	m	class:tool
+__init__	source/class_inventory.py	/^    def __init__(self):$/;"	m	class:weapon
+__init__	source/class_journal.py	/^    def __init__(self):$/;"	m	class:journal
+__init__	source/class_journal.py	/^    def __init__(self):$/;"	m	class:page
+__init__	source/class_skills.py	/^    def __init__(self):$/;"	m	class:skills
+__init__	source/class_spellbook.py	/^    def __init__(self):$/;"	m	class:spell
+__init__	source/class_spellbook.py	/^    def __init__(self,basic):$/;"	m	class:spellbook
+__init__	source/class_spellbook.py	/^    def __init__(self,basic):$/;"	m	class:spellslots
+__init__	source/class_table.py	/^    def __init__(self,source,headers=()):$/;"	m	class:table
+addFeat	source/class_feats.py	/^    def addFeat(self):$/;"	m	class:feats
+addFeat	source/commands_feats.py	/^def addFeat(self,line):$/;"	f
+addHitDice	source/class_health.py	/^    def addHitDice(self,basic):$/;"	m	class:health
+addHitDice	source/commands_health.py	/^def addHitDice(self,line):$/;"	f
+addItem	source/class_inventory.py	/^    def addItem(self,item_type):$/;"	m	class:inventory
+addItem	source/commands_inventory.py	/^def addItem(self,name):$/;"	f
+addPage	source/class_journal.py	/^    def addPage(self):$/;"	m	class:journal
+addSpell	source/class_spellbook.py	/^    def addSpell(self,level):$/;"	m	class:spellbook
+addSpell	source/commands_spellbook.py	/^def addSpell(self,name):$/;"	f
+addTemporaryHealth	source/class_health.py	/^    def addTemporaryHealth(self):$/;"	m	class:health
+addTemporaryHealth	source/commands_health.py	/^def addTemporaryHealth(self,line):$/;"	f
+adventuringgear	source/class_inventory.py	/^class adventuringgear(item):$/;"	c
+armor	source/class_inventory.py	/^class armor(item):$/;"	c
+attributes	source/class_attributes.py	/^class attributes:$/;"	c
+basic	source/class_basic.py	/^class basic:$/;"	c
+calculateCombat	source/class_combat.py	/^    def calculateCombat(self,inventory,basic,attributes):$/;"	m	class:combat
+calculateSkills	source/class_skills.py	/^    def calculateSkills(self,basic,attributes):$/;"	m	class:skills
+changeAllHealth	source/class_health.py	/^    def changeAllHealth(self):$/;"	m	class:health
+changeAttribute	source/class_attributes.py	/^    def changeAttribute(self):$/;"	m	class:attributes
+changeBasic	source/class_basic.py	/^    def changeBasic(self):$/;"	m	class:basic
+changeProficiencies	source/class_skills.py	/^    def changeProficiencies(self):$/;"	m	class:skills
+changeattribute	source/commands_stats.py	/^def changeattribute(self,line):$/;"	f
+changebasic	source/commands_stats.py	/^def changebasic(self,line):$/;"	f
+charstate	source/character.py	/^class charstate:$/;"	c
+checkIfExists	source/class_feats.py	/^    def checkIfExists(self):$/;"	m	class:feats
+checkIfExists	source/class_inventory.py	/^    def checkIfExists(self):$/;"	m	class:inventory
+checkIfExists	source/class_spellbook.py	/^    def checkIfExists(self):$/;"	m	class:spellbook
+chuckItem	source/class_inventory.py	/^    def chuckItem(self,item_type):$/;"	m	class:inventory
+chuckItem	source/commands_inventory.py	/^def chuckItem(self,name):$/;"	f
+chuckSpell	source/class_spellbook.py	/^    def chuckSpell(self,spell_level):$/;"	m	class:spellbook
+chuckSpell	source/commands_spellbook.py	/^def chuckSpell(self,name):$/;"	f
+clearTemporaryHealth	source/class_health.py	/^    def clearTemporaryHealth(self):$/;"	m	class:health
+clearTemporaryHealth	source/commands_health.py	/^def clearTemporaryHealth(self,line): $/;"	f
+combat	source/class_combat.py	/^class combat:$/;"	c
+comp_addItem	source/commands_inventory.py	/^def comp_addItem(self, text, line, begidx, endidx):$/;"	f
+comp_addSpell	source/commands_spellbook.py	/^def comp_addSpell(self, text, line, begidx, endidx):$/;"	f
+comp_chuckItem	source/commands_inventory.py	/^def comp_chuckItem(self, text, line, begidx, endidx):$/;"	f
+comp_chuckSpell	source/commands_spellbook.py	/^def comp_chuckSpell(self, text, line, begidx, endidx):$/;"	f
+comp_examineItem	source/commands_sheet.py	/^def comp_examineItem(self, text, line, begidx, endidx):$/;"	f
+comp_examineSpell	source/commands_sheet.py	/^def comp_examineSpell(self, text, line, begidx, endidx):$/;"	f
+comp_load	source/commands.py	/^def comp_load(self, text, line, begidx, endidx):$/;"	f
+comp_setHealth	source/commands_health.py	/^def comp_setHealth(self, text, line, begidx, endidx):$/;"	f
+computeHeightWidth	source/class_table.py	/^    def computeHeightWidth(self):$/;"	m	class:table
+contDice	source/class_container.py	/^class contDice(container):$/;"	c
+contInt	source/class_container.py	/^class contInt(container):$/;"	c
+contIntRng	source/class_container.py	/^class contIntRng(container):$/;"	c
+contIntVal	source/class_container.py	/^class contIntVal(container):$/;"	c
+contListCont	source/class_container.py	/^class contListCont(container):$/;"	c
+contLst	source/class_container.py	/^class contLst(container):$/;"	c
+contMlist	source/class_container.py	/^class contMlist(container):$/;"	c
+contStr	source/class_container.py	/^class contStr(container):$/;"	c
+container	source/class_container.py	/^class container(object):$/;"	c
+createCharacter	source/commands.py	/^def createCharacter(self,line):$/;"	f
+dialogue	source/dialogue.py	/^def dialogue(stat):$/;"	f
+dispBool	source/dialogue.py	/^def dispBool(key,names,indentation,stdscr):$/;"	f
+dispDie	source/dialogue.py	/^def dispDie(key,indentation,stdscr):$/;"	f
+dispInt	source/dialogue.py	/^def dispInt(stat,indentation,stdscr):$/;"	f
+dispIntRange	source/dialogue.py	/^def dispIntRange(key,names,indentation,stdscr,lists):$/;"	f
+dispIntValues	source/dialogue.py	/^def dispIntValues(key,names,indentation,stdscr,lists):$/;"	f
+dispListCont	source/dialogue.py	/^def dispListCont(stat,indentation,stdscr):$/;"	f
+dispLst	source/dialogue.py	/^def dispLst(key,indentation,stdscr,lists):$/;"	f
+dispMLst	source/dialogue.py	/^def dispMLst(key,indentation,stdscr,lists):$/;"	f
+dispStr	source/dialogue.py	/^def dispStr(stat,indentation,stdscr):$/;"	f
+equipItem	source/class_inventory.py	/^    def equipItem(self,item):$/;"	m	class:equipped
+equipped	source/class_inventory.py	/^class equipped:$/;"	c
+examineFeat	source/commands_sheet.py	/^def examineFeat(self,line):$/;"	f
+examineItem	source/commands_sheet.py	/^def examineItem(self,name):$/;"	f
+examineSpell	source/commands_sheet.py	/^def examineSpell(self,name):$/;"	f
+feat	source/class_feats.py	/^class feat:$/;"	c
+feats	source/class_feats.py	/^class feats:$/;"	c
+getAC	source/class_inventory.py	/^    def getAC(self):$/;"	m	class:equipped
+getTableData	source/class_attributes.py	/^    def getTableData(self):$/;"	m	class:attributes
+getTableData	source/class_basic.py	/^    def getTableData(self):$/;"	m	class:basic
+heal	source/class_health.py	/^    def heal(self):$/;"	m	class:health
+heal	source/commands_health.py	/^def heal(self,line):$/;"	f
+health	source/class_health.py	/^class health:$/;"	c
+initDisp	source/dialogue.py	/^def initDisp():$/;"	f
+initialiseDisplay	source/display.py	/^def initialiseDisplay():$/;"	f
+inventory	source/class_inventory.py	/^class inventory:$/;"	c
+item	source/class_inventory.py	/^class item(object):$/;"	c
+journal	source/class_journal.py	/^class journal:$/;"	c
+killDisplay	source/display.py	/^def killDisplay():$/;"	f
+load	source/commands.py	/^def load(self,name):$/;"	f
+magical	source/class_inventory.py	/^class magical(item):$/;"	c
+misc	source/class_inventory.py	/^class misc(item):$/;"	c
+outputToDash	source/display.py	/^def outputToDash(ypos,xpos,output):$/;"	f
+page	source/class_journal.py	/^class page:$/;"	c
+prompt	source/commands.py	/^def prompt(self,line):$/;"	f
+returnDescription	source/class_feats.py	/^    def returnDescription(self):$/;"	m	class:feat
+returnDescription	source/class_spellbook.py	/^    def returnDescription(self):$/;"	m	class:spell
+returnFeat	source/class_feats.py	/^    def returnFeat(self,name):$/;"	m	class:feats
+returnFeatFromList	source/class_feats.py	/^    def returnFeatFromList(self):$/;"	m	class:feats
+returnFeatIndex	source/class_feats.py	/^    def returnFeatIndex(self,feat_name):$/;"	m	class:feats
+returnHeightWidth	source/class_table.py	/^    def returnHeightWidth(self):$/;"	m	class:table
+returnHeightWidth	source/commands_sheet.py	/^def returnHeightWidth(table):$/;"	f
+returnItemFromList	source/class_inventory.py	/^    def returnItemFromList(self,item_type):$/;"	m	class:inventory
+returnItemIndex	source/class_inventory.py	/^    def returnItemIndex(self,item_type,item_name):$/;"	m	class:inventory
+returnLabel	source/class_container.py	/^    def returnLabel(self):$/;"	m	class:container
+returnLevels	source/class_spellbook.py	/^    def returnLevels(self):$/;"	m	class:spellbook
+returnList	source/class_container.py	/^    def returnList(self):$/;"	m	class:contListCont
+returnListOfNames	source/class_feats.py	/^    def returnListOfNames(self):$/;"	m	class:feats
+returnListOfNames	source/class_health.py	/^    def returnListOfNames(self):$/;"	m	class:health
+returnListOfNames	source/class_inventory.py	/^    def returnListOfNames(self):$/;"	m	class:inventory
+returnName	source/class_feats.py	/^    def returnName(self):$/;"	m	class:feat
+returnName	source/class_inventory.py	/^    def returnName(self):$/;"	m	class:item
+returnName	source/class_spellbook.py	/^    def returnName(self):$/;"	m	class:spell
+returnQuantity	source/class_inventory.py	/^    def returnQuantity(self):$/;"	m	class:item
+returnSpellFromList	source/class_spellbook.py	/^    def returnSpellFromList(self,spell_level):$/;"	m	class:spellbook
+returnSpellIndex	source/class_spellbook.py	/^    def returnSpellIndex(self,spell_level,spell_name):$/;"	m	class:spellbook
+returnStatement	source/class_container.py	/^    def returnStatement(self):$/;"	m	class:container
+returnTable	source/class_combat.py	/^    def returnTable(self):$/;"	m	class:combat
+returnTable	source/class_feats.py	/^    def returnTable(self):$/;"	m	class:feats
+returnTable	source/class_health.py	/^    def returnTable(self):$/;"	m	class:health
+returnTable	source/class_inventory.py	/^    def returnTable(self):$/;"	m	class:inventory
+returnTable	source/class_inventory.py	/^    def returnTable(self):$/;"	m	class:item
+returnTable	source/class_skills.py	/^    def returnTable(self):$/;"	m	class:skills
+returnTable	source/class_spellbook.py	/^    def returnTable(self):$/;"	m	class:spellbook
+returnTable	source/class_table.py	/^    def returnTable(self):$/;"	m	class:table
+returnType	source/class_container.py	/^    def returnType(self): $/;"	m	class:container
+returnValue	source/class_container.py	/^    def returnValue(self):$/;"	m	class:container
+roll	source/dice.py	/^def roll(number):$/;"	f
+save	source/commands.py	/^def save(self,line):$/;"	f
+setHealth	source/class_health.py	/^    def setHealth(self,kind):$/;"	m	class:health
+setHealth	source/commands_health.py	/^def setHealth(self,name):$/;"	f
+setSlots	source/class_spellbook.py	/^    def setSlots(self):$/;"	m	class:spellslots
+setValue	source/class_container.py	/^    def setValue(self,value):$/;"	m	class:container
+sheet	source/commands_sheet.py	/^def sheet(self,line):$/;"	f
+shortRest	source/class_health.py	/^    def shortRest(self,attributes):$/;"	m	class:health
+shortRest	source/commands_health.py	/^def shortRest(self,line):$/;"	f
+showFeats	source/commands_sheet.py	/^def showFeats(self,line):$/;"	f
+showInventory	source/commands_sheet.py	/^def showInventory(self,line):$/;"	f
+showSpellBook	source/commands_sheet.py	/^def showSpellBook(self,line):$/;"	f
+skills	source/class_skills.py	/^class skills:$/;"	c
+spell	source/class_spellbook.py	/^class spell:$/;"	c
+spellbook	source/class_spellbook.py	/^class spellbook:$/;"	c
+spellslots	source/class_spellbook.py	/^class spellslots:$/;"	c
+table	source/class_table.py	/^class table:$/;"	c
+takeDamage	source/class_health.py	/^    def takeDamage(self):$/;"	m	class:health
+takeDamage	source/commands_health.py	/^def takeDamage(self,line):$/;"	f
+tool	source/class_inventory.py	/^class tool(item):$/;"	c
+waitToKill	source/display.py	/^def waitToKill(stdscr):$/;"	f
+weapon	source/class_inventory.py	/^class weapon(item):$/;"	c

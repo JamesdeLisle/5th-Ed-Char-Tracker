@@ -8,12 +8,13 @@ class table:
         self.headers = headers
         self.raw = tabulate(source,headers=headers,tablefmt='grid')
         self.computeHeightWidth()
+        
 
     def computeHeightWidth(self):
        
         self.height = 0
         self.width = 0
-        
+
         for line in self.raw.split('\n'):
             if self.width < len(line): 
                 self.width = len(line)

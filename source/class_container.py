@@ -1,34 +1,27 @@
 class container(object):
 
     def __init__(self,info):
-
         self.label = info[0]
         self.statement = info[1]
    
-    def returnType(self):
-        
+    def returnType(self): 
         return self.type
     
     def returnLabel(self):
-
         return self.label
 
     def returnStatement(self):
-
         return self.statement
 
     def returnValue(self):
-
         return self.value
 
     def setValue(self,value):
-
-        self.value = 0 
+        self.value = value 
 
 class contInt(container):
 
     def __init__(self,info):
-        
         container.__init__(self,info)
         self.type = 'int'
         self.value = 0
@@ -36,7 +29,6 @@ class contInt(container):
 class contIntRng(container):
 
     def __init__(self,info,range):
-       
         container.__init__(self,info)
         self.type = 'intr'
         self.range = range
@@ -45,7 +37,6 @@ class contIntRng(container):
 class contIntVal(container):
 
     def __init__(self,info,allowed):
-
         container.__init__(self,info)
         self.type = 'intv'
         self.allowed = allowed
@@ -54,7 +45,6 @@ class contIntVal(container):
 class contDice(container):
 
     def __init__(self,info):
-
         container.__init__(self,info)
         self.type = 'die'
         self.dice_num = 0
@@ -64,7 +54,6 @@ class contDice(container):
 class contStr(container):
 
     def __init__(self,info):
-
         container.__init__(self,info)
         self.type = 'str'
         self.value = ''
@@ -72,7 +61,6 @@ class contStr(container):
 class contLst(container):
 
     def __init__(self,info,list):
-
         container.__init__(self,info)
         self.type = 'lst'
         self.list = list
@@ -81,7 +69,6 @@ class contLst(container):
 class contMlist(container):
 
     def __init__(self,info,list):
-
         container.__init__(self,info)
         self.type = 'mlst'
         self.list = list
@@ -90,14 +77,12 @@ class contMlist(container):
 class contListCont(container):
 
     def __init__(self,info,list):
-
         container.__init__(self,info)
         self.type = 'lstc'
         self.list = list
         self.value = []
 
     def returnList(self):
-
         return self.list
 
 
